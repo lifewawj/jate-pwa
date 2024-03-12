@@ -42,19 +42,14 @@ export const getDb = async () => {
   // Open up the desired object store.
   const store = tx.objectStore('jate');
 
-  // Use the .get(id) method to get all data in the database.
-  const request = store.get(id);
+  // Use the .getAll() method to get all data in the database.
+  const request = store.getAll();
 
   // Get confirmation of the request.
   const result = await request;
 
-  if (result) {
-    console.log('result.value', result.value);
-    return result;
-  } else {
-    console.error('getDb not implemented');
-  }
-  
+  console.log('result.value', result);
+  return result;
 };
 
 initdb();
