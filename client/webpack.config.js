@@ -11,7 +11,8 @@ module.exports = () => {
     mode: 'development',
     entry: { // The entry points to my app. Webpack starts bundling here
       main: './src/js/index.js',
-      install: './src/js/install.js'
+      install: './src/js/install.js',
+      header: './src/js/header.js'
     },
     output: { // Our custom name for our bundle and location
       filename: '[name].bundle.js',
@@ -21,7 +22,7 @@ module.exports = () => {
       // Webpack plugin that generates our html file and injects our bundles. 
       new HtmlWebpackPlugin({
         template: './index.html', // File Location
-        title: 'PWA Text-Editor' // Title for the output HTML file
+        title: 'Text Editor' // Title for the output HTML file
       }),
 
       // Creates and Injects our custom service worker.
@@ -33,8 +34,8 @@ module.exports = () => {
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true, // tells the plugin to automatically add and link our manifest.json file to our html file
-        name: 'jate',
-        short_name: 'jate',
+        name: 'PWA JATE',
+        short_name: 'JATE',
         description: 'Edit your Text!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
