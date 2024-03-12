@@ -1,10 +1,11 @@
 import { openDB } from 'idb';
+import { ids } from 'webpack';
 
 const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
-        console.log('jate database already exists');
+        console.log('Database already exists');
         return;
       }
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
@@ -19,14 +20,10 @@ export const putDb = async (content) => {
   const jate_DB = await openDB('jate', 1);
   const tx = jate_DB.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  const request = store.put({ id: 1, value: content });
+  const request = store.put({ value: content });
   const result = await request;
 
-  if (result) {
-    console.log('Data saved to the database', result);
-  } else {
-    console.error('putDb not implemented');
-  }
+  console.log('Data saved to the database', result);
 };
 
 // TODO: Add logic for a method that gets all the content from the database
